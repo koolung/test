@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Option Display</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <form>
+    <label for="depthInput">Enter a depth:</label>
+    <input type="number" id="depthInput" oninput="enableInput(depthInput, widthInput)" onchange="displayOptions()" step=".01" required>
+    <br><br>
+
+    <label for="widthInput">Enter a width:</label>
+    <input type="number" id="widthInput" oninput="enableInput(widthInput, heightInput)" onchange="displayOptions()" step=".01" disabled required>
+    <br><br>
+
+    <label for="heightInput">Enter a height:</label>
+    <input type="number" id="heightInput" oninput="displayMeasurementOptions()" onchange="displayOptions()" step=".01" disabled required>
+    <br><br>
+
+    <!-- Mount type -->
+    <div class="dropdown">
+      <select id="mountType" class="drop-down-btn" onchange="showSelectedDiv()">
+        <option value="">Select Mount Type</option>
+        <option value="insideMount">Inside Mount</option>
+        <option value="outsideMount">Outside Mount</option>
+      </select>
+    </div>
+    <!-- End Mount type -->
+    <br><br>
+
+    <!-- Div for Inside Mount -->
+    <div id="insideMountDiv" style="display: none;">
+      <h2>Inside Mount</h2>
+      <img src="dist/images/inside_mount_image.jpg" alt="Inside Mount Image" class="option-images">
+      <p>Description caption for Inside Mount.</p>
+    </div>
+
+    <!-- Div for Outside Mount -->
+    <div id="outsideMountDiv" style="display: none;">
+      <h2>Outside Mount</h2>
+      <img src="dist/images/outside_mount_image.jpg.jpg" alt="Outside Mount Image" class="option-images">
+      <p>Description caption for Outside Mount.</p>
+    </div>
+
+    <!-- control options-->
+    <label for="controlOptionDropdown">Control Options:</label><br>
+    <select id="controlOptionDropdown" class="drop-down-btn" onchange="displayOptions()" required>
+      <option value="">Select a control option</option>
+      <option value="option1">Cord</option>
+      <option value="option2">Cordless</option>
+      <option value="option3">Motorized</option>
+    </select>
+    <!-- End control options-->
+
+    <!-- Div for Cord -->
+    <div id="cordDiv" style="display: none;">
+      <h2>Cord Operation</h2>
+      <img src="dist/images/cord_image.jpg" alt="cord Image" class="option-images">
+      <p>Description caption for cord.</p>
+    </div>
+
+    <!-- cord position drop down-->
+    <div id="cordPositionContainer" class="drop-down-container"></div>
+    <!-- End cord position drop down-->
+
+    <!-- Div for Cordless -->
+    <div id="cordlessDiv" style="display: none;">
+      <h2>Cordless Operation</h2>
+      <img src="dist/images/cordless_image.jpg" alt="cordless Image" class="option-images">
+      <p>Description caption for cordless.</p>
+    </div>
+
+    <!-- Div for Motorized -->
+    <div id="motorizedDiv" style="display: none;">
+      <h2>Motorized Operation</h2>
+      <img src="dist/images/motorized_image.jpg" alt="Motorized Image" class="option-images">
+      <p>Description caption for motorized.</p>
+    </div>
+
+    <!-- control option drop down-->
+    <div id="optionsContainer" class="drop-down-container"></div>
+    <!-- End control option drop down-->
+
+  <!-- Dropdown Menu -->
+  <div class="dropdown">
+    <button class="dropbtn">This is the real one</button>
+    <div id="dropdownOptions" class="dropdown-content">
+      <a id="option1" style="display: none;">3.4'' cover</a>
+      <a id="option2" style="display: none;">2.6'' cover</a>
+      <a id="option3" style="display: none;">Girder</a>
+      <a id="option4" style="display: none;">Exposed</a>
+    </div>
+  </div>
+
+    <!-- head cover type drop down-->
+    <div id="coverOptionsContainer" class="drop-down-container"></div>
+    <!-- End head cover type drop down-->
+
+    <input class="add-to-cart-btn" type="submit" value="Add to cart">
+  </form>
+
+  <script src="index.js"></script>
+  <script>
+  </script>
+</body>
+</html>
