@@ -1,7 +1,71 @@
+    /* updating headcover option per the measurement input */
+    function updateDropdown() {
+      var depthInput = parseFloat(document.getElementById("depthInput").value);
+      var widthInput = parseFloat(document.getElementById("widthInput").value);
+      var heightInput = parseFloat(document.getElementById("heightInput").value);
+      var controlOption = document.getElementById("controlOptionDropdown").value;
+
+      var menuOptions = document.getElementById("menuOptions");
+      menuOptions.innerHTML = ""; // Clear previous options
+
+      //check if the motorized option is selected
+      if (controlOption === "option3"){
+          if(depthInput > 3.4 && heightInput < 98.42 && heightInput > 13.77 && widthInput > 15.74 && widthInput < 98.42){
+              addOption("3.4'' cover");
+          }
+      } 
+      //if it isn't motorized, then do normal 3.4 cover check
+      else if (depthInput > 3.4 && heightInput < 157.48 && widthInput > 11.81 && widthInput < 98.42) {
+              addOption("3.4'' cover");
+          
+      }
+      // check 2.6 cover option
+      if (depthInput < 2.6 || heightInput > 70.86 || widthInput < 11.81 || widthInput > 98.42) {
+          // '2.6'' cover' option is not available
+      } else {
+          addOption("2.6'' cover");
+      }
+
+      //check if the motorized option is selected
+      if (controlOption === "option3"){
+          if(depthInput > 2.3 && heightInput < 98.42 && widthInput > 15.74 && widthInput < 98.42){
+              addOption("Girder");
+          }
+      } 
+      //check if the cordless option is selected
+      else if (controlOption === "option2"){
+          if(depthInput > 1.4 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
+              addOption("Girder");
+          }
+      } 
+      //if it isn't motorized nor cordless, then just add girder
+      else{
+          if(depthInput)
+          addOption("Girder");
+      }
+
+      if (depthInput < 2.4 || heightInput > 196.85 || widthInput < 11.81 || widthInput > 98.42) {
+          // 'Exposed' option is not available
+      } else {
+          addOption("Exposed");
+      }
+
+      displayOptions();
+  }
+
+  // adds option to the <select>
+  function addOption(optionText) {
+      var menuOptions = document.getElementById("menuOptions");
+      var option = document.createElement("option");
+      option.text = optionText;
+      menuOptions.add(option);
+  }
+    /* End updating headcover option per the measurement input */
+    
+  
     /* listen to control option choice and show options */
     function displayOptions() {
 
-      updateOptions();
       
       var firstDropdown = document.getElementById("controlOptionDropdown");
       var selectedOption = firstDropdown.value;
@@ -40,122 +104,18 @@
 
         cordPositionContainer.appendChild(cordPositionDropdown);
 
-
-        //show head cover options
-        var options = [
-          'Choose Head Cover Type',
-          '3.4 cover',
-          '2.6 cover',
-          '3.4 motorized cover',  
-          'cordless girder',
-          'exposed',
-          'motorized girder'
-        ];
-
-        var secondDropdown = document.createElement("select");
-        for (var i = 0; i < options.length; i++) {
-          var option = document.createElement("option");
-          option.text = options[i];
-          secondDropdown.add(option);
-        }
-
-        optionsContainer.appendChild(secondDropdown);
       } else if (selectedOption === "option2") {
          //show cordless opeariton descripton
          cordlessDiv.style.display = "block";
 
-         var options = [
-            'Choose Head Cover Type',
-            '3.4 cover',
-            '2.6 cover',
-            '3.4 motorized cover',  
-            'cordless girder',
-            'exposed',
-            'motorized girder'
-          ];
-  
-          var secondDropdown = document.createElement("select");
-          for (var i = 0; i < options.length; i++) {
-            var option = document.createElement("option");
-            option.text = options[i];
-            secondDropdown.add(option);
-          }
-  
-          optionsContainer.appendChild(secondDropdown);
       } else if (selectedOption === "option3") {
          //show mortorized operation description
          motorizedDiv.style.display = "block";
 
-         var options = [
-            'Choose Head Cover Type',
-            '3.4 cover',
-            'girder',
-            'exposed'
-          ];
-  
-          var secondDropdown = document.createElement("select");
-          for (var i = 0; i < options.length; i++) {
-            var option = document.createElement("option");
-            option.text = options[i];
-            secondDropdown.add(option);
-          }
-  
-          optionsContainer.appendChild(secondDropdown);
       }
     }
     /* end listen to control option choice and show options */
 
-
-   /* head cover logic function */
-   function updateOptions() {
-      // Retrieve input values and selected option
-      var depthInput = document.getElementById("depthInput").value;
-      var heightInput = document.getElementById("heightInput").value;
-      var widthInput = document.getElementById("widthInput").value;
-      var selectedOption = document.getElementById("controlOptionDropdown").value;
-
-      // Hide all options initially
-      var option1 = document.getElementById("option1");
-      var option2 = document.getElementById("option2");
-      var option3 = document.getElementById("option3");
-      var option4 = document.getElementById("option4");
-      option1.style.display = "none";
-      option2.style.display = "none";
-      option3.style.display = "none";
-      option4.style.display = "none";
-
-      // Show options based on conditions
-      if (
-        depthInput <= 3.4 && heightInput >= 13.77 && heightInput <= 98.42 &&
-        widthInput >= 15.74 && widthInput <= 98.42 &&
-        selectedOption === "option3"
-      ) {
-        option1.style.display = "block";
-      }
-
-      if (
-        depthInput <= 2.6 && heightInput <= 70.86 &&
-        widthInput >= 11.81 && widthInput <= 98.42
-      ) {
-        option2.style.display = "block";
-      }
-
-      if (
-        depthInput <= 2.3 && heightInput <= 98.42 && heightInput >= 13.77 &&
-        widthInput >= 15.74 && widthInput <= 98.42 &&
-        selectedOption === "option3"
-      ) {
-        option3.style.display = "block";
-      }
-
-      if (
-        depthInput <= 2.4 && heightInput <= 196.85 &&
-        widthInput >= 11.81 && widthInput <= 98.42
-      ) {
-        option4.style.display = "block";
-      }
-    }
-   /* end head cover logic function */
 
    /* listen to mount type choice and show options */
    function showSelectedDiv() {
@@ -189,52 +149,3 @@
       }
     }
     /*end enable input */
-
-    /* display cover options */
-    function displayMeasurementOptions() {
-
-      //measurement inputs into variables
-      var width = parseInt(document.getElementById("widthInput").value);
-      var height = parseInt(document.getElementById("heightInput").value);
-      var depth = parseInt(document.getElementById("depthInput").value);
-
-      var optionsContainer = document.getElementById("coverOptionsContainer");
-      optionsContainer.innerHTML = "";
-
-      if (height < 5) {
-        var options = [
-          '3.4 cover',
-          '2.6 cover',
-          '3.4 motorized cover',
-          'cordless girder',
-          'exposed',
-          'motorized girder'
-        ];
-
-        var selectElement = document.createElement("select");
-        for (var i = 0; i < options.length; i++) {
-          var option = document.createElement("option");
-          option.text = options[i];
-          selectElement.add(option);
-        }
-
-        optionsContainer.appendChild(selectElement);
-      } else if (height >= 5 && height <= 10) {
-        var options = [
-          'a','b','c','d'
-        ];
-
-        var selectElement = document.createElement("select");
-        for (var i = 0; i < options.length; i++) {
-          var option = document.createElement("option");
-          option.text = options[i];
-          selectElement.add(option);
-        }
-
-        
-        optionsContainer.appendChild(selectElement);
-      } else {
-        alert
-      }
-    }
-    /* end display cover options */
