@@ -18,36 +18,36 @@
       //check if the motorized option is selected
       if (controlOption === "option3"){
           if(depthInput > 3.4 && heightInput < 98.42 && heightInput > 13.77 && widthInput > 15.74 && widthInput < 98.42){
-              addOption("3.4'' cover", "3.4cover");
+              addOption("menuOptions", "3.4'' cover", "3.4cover");
           }
       } 
       //if it isn't motorized, then do normal 3.4 cover check
       else if (depthInput > 3.4 && heightInput < 157.48 && widthInput > 11.81 && widthInput < 98.42) {
-              addOption("3.4'' cover", "3.4cover");
+              addOption("menuOptions", "3.4'' cover", "3.4cover");
           
       }
       // check 2.6 cover option
       if (depthInput < 2.6 || heightInput > 70.86 || widthInput < 11.81 || widthInput > 98.42) {
           // '2.6'' cover' option is not available
       } else {
-          addOption("2.6'' cover", "2.6cover");
+          addOption("menuOptions", "2.6'' cover", "2.6cover");
       }
 
       //check if the motorized option is selected
       if (controlOption === "option3"){
           if(depthInput > 2.3 && heightInput < 98.42 && widthInput > 15.74 && widthInput < 98.42){
-              addOption("Girder", "girder");
+              addOption("menuOptions", "Girder", "girder");
           }
       } 
       //check if the cordless option is selected
       else if (controlOption === "option2"){
           if(depthInput > 2 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
-              addOption("Girder", "girder");
+              addOption("menuOptions", "Girder", "girder");
           }
       } 
       //if it isn't motorized nor cordless, then just add girder
-      else if(depthInput >= 2){
-          addOption("Girder", "girder");
+      else if(depthInput >= 2 && depthInput <= 30 && heightInput < 98.42 && widthInput < 98.42 ){
+          addOption("menuOptions", "Girder", "girder");
       } else {
         console.log("choose a measurement larger than 2 inches");
       }
@@ -55,19 +55,19 @@
       if (depthInput < 2.4 || heightInput > 196.85 || widthInput < 11.81 || widthInput > 98.42) {
           // 'Exposed' option is not available
       } else {
-          addOption("Exposed", "exposed");
+          addOption("menuOptions", "Exposed", "exposed");
       }
 
       displayOptions();
   }
 
-  // adds option to the <select>
-  function addOption(optionText, optionValue) {
-    var menuOptions = document.getElementById("menuOptions");
+  /* adds option to the <select> */
+  function addOption(selectID, optionText, optionValue) {
+    var menuOptions = document.getElementById(selectID);
     var options = menuOptions.options;
     options[options.length] = new Option(optionText, optionValue);
   }
-    /* End updating headcover option per the measurement input */
+  /* End adds option to the <select> */
     
   
     /* listen to control option choice and show options */
@@ -96,18 +96,24 @@
         //show cord position options
         var cordPositions = [
          'Choose Cord Position',
-         'left',
-         'right'
+         'Left',
+         'Right'
        ];
 
-      
+       //show cord position option values
+       var cordPositionValues = [
+        '',
+        'left',
+        'right'
+      ];
 
-       var cordPositionDropdown = document.createElement("select");
-        for (var i = 0; i < cordPositions.length; i++) {
-          var cordPosition = document.createElement("option");
-          cordPosition.text = cordPositions[i];
-         cordPositionDropdown.add(cordPosition);
-        }
+      var cordPositionDropdown = document.createElement("select");
+      var options = cordPositionDropdown.options;
+      
+      for (var i = 0; i < cordPositions.length; i++) {
+        options[options.length] = new Option(cordPositions[i], cordPositionValues[i]);
+      }
+      
 
         cordPositionContainer.appendChild(cordPositionDropdown);
 
