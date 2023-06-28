@@ -46,9 +46,10 @@
           }
       } 
       //if it isn't motorized nor cordless, then just add girder
-      else{
-          if(depthInput)
+      else if(depthInput >= 2){
           addOption("Girder");
+      } else {
+        console.log("choose a measurement larger than 2 inches");
       }
 
       if (depthInput < 2.4 || heightInput > 196.85 || widthInput < 11.81 || widthInput > 98.42) {
