@@ -37,17 +37,17 @@
 
             //check if the motorized option is selected
             if (controlOption === "option3"){
-                if(depthInput < 3.4 && heightInput < 98.42 && heightInput > 13.77 && widthInput > 15.74 && widthInput < 98.42){
+                if(depthInput > 3.4 && heightInput < 98.42 && heightInput > 13.77 && widthInput > 15.74 && widthInput < 98.42){
                     addOption("3.4'' cover");
                 }
             } 
             //if it isn't motorized, then do normal 3.4 cover check
-            else if (depthInput < 3.4 && heightInput < 157.48 && widthInput > 11.81 && widthInput < 98.42) {
+            else if (depthInput > 3.4 && heightInput < 157.48 && widthInput > 11.81 && widthInput < 98.42) {
                     addOption("3.4'' cover");
                 
             }
             // check 2.6 cover option
-            if (depthInput > 2.6 || heightInput > 70.86 || widthInput < 11.81 || widthInput > 98.42) {
+            if (depthInput < 2.6 || heightInput > 70.86 || widthInput < 11.81 || widthInput > 98.42) {
                 // '2.6'' cover' option is not available
             } else {
                 addOption("2.6'' cover");
@@ -55,13 +55,13 @@
 
             //check if the motorized option is selected
             if (controlOption === "option3"){
-                if(depthInput < 2.3 && heightInput < 98.42 && widthInput > 15.74 && widthInput < 98.42){
+                if(depthInput > 2.3 && heightInput < 98.42 && widthInput > 15.74 && widthInput < 98.42){
                     addOption("Girder");
                 }
             } 
             //check if the cordless option is selected
             else if (controlOption === "option2"){
-                if(depthInput < 1.4 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
+                if(depthInput > 1.4 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
                     addOption("Girder");
                 }
             } 
@@ -70,7 +70,7 @@
                 addOption("Girder");
             }
 
-            if (depthInput > 2.4 || heightInput > 196.85 || widthInput < 11.81 || widthInput > 98.42) {
+            if (depthInput < 2.4 || heightInput > 196.85 || widthInput < 11.81 || widthInput > 98.42) {
                 // 'Exposed' option is not available
             } else {
                 addOption("Exposed");
