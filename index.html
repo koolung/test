@@ -8,6 +8,15 @@
   <form>
     <label for="depthInput">Enter a depth:</label>
     <input type="number" id="depthInput" oninput="enableInput(depthInput, widthInput)" onchange="updateDropdown()" step=".01" required>
+
+    <!-- Div for inisufficient Depth -->
+    <div id="depthDiv" style="display: none;">
+      <h2>What to do if my window frame depth is too small?</h2>
+      <img src="dist/images/depth_measurement.jpg" alt="Depth Measurement Image" class="option-images">
+      <p>In case your window frame depth is insufficient for any type of operaiont system, we recommend you to choose 
+        outside mount option.
+      </p>
+    </div>
     <br><br>
 
     <label for="widthInput">Enter a width:</label>
@@ -39,7 +48,7 @@
     <!-- Div for Outside Mount -->
     <div id="outsideMountDiv" style="display: none;">
       <h2>Outside Mount</h2>
-      <img src="dist/images/outside_mount_image.jpg.jpg" alt="Outside Mount Image" class="option-images">
+      <img src="dist/images/outside_mount_image.jpg" alt="Outside Mount Image" class="option-images">
       <p>Description caption for Outside Mount.</p>
     </div>
 

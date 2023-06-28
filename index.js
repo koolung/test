@@ -8,6 +8,13 @@
       var menuOptions = document.getElementById("menuOptions");
       menuOptions.innerHTML = ""; // Clear previous options
 
+      //check if the depth measurement is below 2 inches
+      if(depthInput < 2){
+        showDepthDiv();
+      } else{
+        dontShowDepthDiv();
+      }
+
       //check if the motorized option is selected
       if (controlOption === "option3"){
           if(depthInput > 3.4 && heightInput < 98.42 && heightInput > 13.77 && widthInput > 15.74 && widthInput < 98.42){
@@ -34,7 +41,7 @@
       } 
       //check if the cordless option is selected
       else if (controlOption === "option2"){
-          if(depthInput > 1.4 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
+          if(depthInput > 2 && heightInput < 70.86 && widthInput > 23.62 && widthInput < 78.74){
               addOption("Girder");
           }
       } 
@@ -116,6 +123,25 @@
     }
     /* end listen to control option choice and show options */
 
+    /* listen to depth measurement input and show details */
+    function showDepthDiv() {
+
+    // Hide all divs initially
+    var depthDiv = document.getElementById("depthDiv");
+
+    // Show the selected div based on the selected value
+    depthDiv.style.display = "block";
+  }
+
+    function dontShowDepthDiv() {
+
+      // Hide all divs initially
+      var depthDiv = document.getElementById("depthDiv");
+
+      // hide the selected div based on the selected value
+      depthDiv.style.display = "none";
+    }
+ /* end listen to depth measurement input and show details */
 
    /* listen to mount type choice and show options */
    function showSelectedDiv() {
